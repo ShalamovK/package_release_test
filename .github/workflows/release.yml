@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Create Release
+
+on:
+  repository_dispatch:
+    types: [build_application]
+
+jobs:
+  #on-success:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: Release ${{ github.event.tag }}
+          tag_name: ${{ github.event.tag }}
+          body: this is a test release
