@@ -17,6 +17,6 @@ jobs:
         with:
           draft: false
           prerelease: false
-          release_name: Release ${{ github.event.tag }}
-          tag_name: ${{ github.event.tag }}
+          release_name: Release ${{ github.event.client_payload.tag }}
+          tag_name: ${{ github.event.client_payload.tag }}
           body: this is a test release
