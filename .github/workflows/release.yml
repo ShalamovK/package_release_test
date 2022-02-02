@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      release_asset_path: assets\package.zip
+      release_asset_path: assets
     
     steps:
       - name: Create Release
