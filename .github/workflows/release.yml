@@ -31,6 +31,8 @@ jobs:
       - name: Download File
         id: download_artifact
         uses: carlosperate/download-file-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
          file-url: 'https://api.github.com/repos/ShalamovK/test_package/actions/artifacts/155390018'
       
