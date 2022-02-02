@@ -30,13 +30,4 @@ jobs:
           workflow: package.yml
           run_id: ${{ github.event.client_payload.run_id }}
           repo: ShalamovK/test_package
-      
-      - name: Upload Artifacts
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ${{ steps.download-file.outputs.file-path }}
-          asset_name: Package
-          asset_content_type: application/xml
+          path: ${{ steps.create_release.outputs.upload_url }}
