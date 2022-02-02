@@ -28,12 +28,17 @@ jobs:
         run: |
           curl -u "ShalamovK:${{ secrets.ACCESS_TOKEN }}" -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/ShalamovK/test_package/actions/runs/${{ github.event.client_payload.run_id }}/artifacts"
       
+      - name: Download File
+        id: download_artifact
+        with:
+         file-url: 'https://api.github.com/repos/ShalamovK/test_package/actions/artifacts/155390018'
+      
       - name: Upload Artifacts
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: https://api.github.com/repos/ShalamovK/test_package/actions/artifacts/155390018
+          asset_path: ${{ steps.download-file.outputs.file-path }}
           asset_name: Package
           asset_content_type: application/xml
