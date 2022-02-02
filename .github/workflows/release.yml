@@ -34,7 +34,7 @@ jobs:
           workflow: package.yml
           run_id: ${{ github.event.client_payload.run_id }}
           repo: ShalamovK/test_package
-          path: ${{ env.release_asset_path }}
+          #path: ${{ env.release_asset_path }}
           
       - name: Upload Release Asset
         id: upload-release-asset 
@@ -43,6 +43,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ${{ env.release_asset_path }}\MSIX Package.zip
+          asset_path: MSIX Package.zip
           asset_name: MSIX Package.zip
           asset_content_type: application/zip
