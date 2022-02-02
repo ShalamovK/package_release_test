@@ -22,19 +22,14 @@ jobs:
           release_name: Release ${{ github.event.client_payload.tag }}
           tag_name: ${{ github.event.client_payload.tag }}
           body: this is a test release
-          
-      - name: Fetch Artifacts
-        id: fetch_artifacts
-        run: |
-          curl -u "ShalamovK:${{ secrets.ACCESS_TOKEN }}" -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/ShalamovK/test_package/actions/runs/${{ github.event.client_payload.run_id }}/artifacts"
-      
-      - name: Download File
-        id: download_artifact
-        uses: carlosperate/download-file-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+         
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
         with:
-         file-url: 'https://api.github.com/repos/ShalamovK/test_package/actions/artifacts/154641512'
+          github_token: ${{secrets.ACCESS_TOKEN}}
+          workflow: package.yml
+          run_id: ${{ github.event.client_payload.run_id }}
+          repo: ShalamovK/test_package
       
       - name: Upload Artifacts
         uses: actions/upload-release-asset@v1
