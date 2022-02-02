@@ -34,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-         file-url: 'https://api.github.com/repos/ShalamovK/test_package/actions/artifacts/155390018'
+         file-url: 'https://api.github.com/repos/ShalamovK/test_package/actions/artifacts/154641512'
       
       - name: Upload Artifacts
         uses: actions/upload-release-asset@v1
