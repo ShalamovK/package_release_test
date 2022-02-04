@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      release_asset_path: assets
+      version: ${{ github.event.client_payload.version }}
     
     steps:
       - name: Create Release
@@ -34,7 +34,6 @@ jobs:
           workflow: package.yml
           run_id: ${{ github.event.client_payload.run_id }}
           repo: ShalamovK/test_package
-          #path: ${{ env.release_asset_path }}
           
       - name: Upload Release Asset
         id: upload-release-asset 
@@ -43,6 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: MSIX Package/test_package_project_1.0.1.0_Debug_Test/test_package_project_1.0.1.0_x86_x64_Debug.msixbundle
-          asset_name: test_package_project_1.0.1.0_x86_x64_Debug.msixbundle
+          asset_path: MSIX Package/test_package_project_${{ env.version }}.0_Debug_Test/test_package_project_${{ env.version }}.0_x86_x64_Debug.msixbundle
+          asset_name: Awesomo_Windows_${{ env.version }}.msixbundle
           asset_content_type: application/msixbundle
