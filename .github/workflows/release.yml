@@ -16,7 +16,7 @@ jobs:
     
     steps:
       - name: Create Release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1.1.4
         id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -25,7 +25,7 @@ jobs:
           prerelease: false
           release_name: Release ${{ github.event.client_payload.tag }}
           tag_name: ${{ github.event.client_payload.tag }}
-          body_path: /README.md
+          body_path: README.md
          
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
